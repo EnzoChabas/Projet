@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Dimensions{% endblock %}
+
+{% block body %}
+    <h1>Create new Dimensions</h1>
+
+    {{ include('dimensions/_form.html.twig') }}
+
+    <a href="{{ path('app_dimensions_index') }}">back to list</a>
+{% endblock %}

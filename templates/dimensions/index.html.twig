@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dimensions index{% endblock %}
+
+{% block body %}
+    <h1>Dimensions index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dimension in dimensions %}
+            <tr>
+                <td>{{ dimension.id }}</td>
+                <td>{{ dimension.name }}</td>
+                <td>
+                    <a href="{{ path('app_dimensions_show', {'id': dimension.id}) }}">show</a>
+                    <a href="{{ path('app_dimensions_edit', {'id': dimension.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_dimensions_new') }}">Create new</a>
+{% endblock %}

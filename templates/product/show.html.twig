@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5">
+		<h1>{{product.name}}</h1>
+
+		<div class="row">
+			<div class="col-md-4 mb-4">
+				<div class="card mb-3" style="max-width: 540px;">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<img src="{{ product.picture }}" class="img-fluid rounded-start" alt="{{ product.name }}">
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title">{{ product.name }}</h5>
+								<p class="card-text">{{ product.description }}</p>
+								<p class="card-text">
+    <small class="text-light border rounded p-2 m-2" style="background-color: #4AA3A2; font-weight: 700;">Prix: {{ product.price }} €</small><span class="text-body-secondary border rounded p-2" style="background-color: #FEEAA1; font-weight: 700;">150 x 250</span>
+</p>
+
+								<div class="d-grid gap-2">
+                                <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-success">Ajouter au panier</a>
+                                    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../assets/IMG/V3.jpg" class="d-block w-100 mb-5" alt="Bannière JO" style="max-height: 350px;">
+
+    </div>
+    <div class="carousel-item">
+      <img src="../assets/IMG/banniereV2.jpg" class="d-block w-100 mb-5" alt="Bannière Drapeaux" style="max-height: 350px;">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<style>
+  .custom-bg-color {
+    background-color: #4AA3A2;
+  }
+  /* Utilisation de la police "Baloo" pour les titres h5 */
+  h5 {
+    font-family: 'Baloo', sans-serif; /* Épaisseur de la police */
+    font-size: 24px; /* Taille de la police */
+    color: #FEEAA1;
+  }
+  h1 {
+    font-family: 'Baloo', sans-serif;
+    font-size: 40px;
+    line-height: 1.3em;
+    text-align: center;
+  }
+
+  /* Utilisation de la police "Roboto" pour le texte en bas */
+  .card-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px; /* Taille de la police du texte en bas */
+  }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo|Roboto&display=swap">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card custom-bg-color mb-3">
+        <img src="../assets/IMG/pngegg.png" class="card-img-top custom-card-img img-fluid mx-auto" style="max-width: 10rem; height: 10rem;" alt="Image 1">
+        <div class="card-body">
+          <h5 class="card-title text-center" style="color: #FEEAA1;">Construit en France</h5>
+          <p class="card-text text-center"><b>Tous nos drapeaux sont fièrement fabriqués en France. Notre engagement envers la qualité française est au cœur de notre entreprise.</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card custom-bg-color mb-3">
+        <img src="../assets/IMG/medaille.png" class="card-img-top custom-card-img img-fluid mx-auto" style="max-width: 10rem; height: 10rem;" alt="Image 2">
+        <div class="card-body">
+          <h5 class="card-title text-center" style="color: #FEEAA1;">Qualité Garantie</h5>
+          <p class="card-text text-center"><b>Nos drapeaux sont conçus avec un souci inébranlable de la qualité. Optez pour l'authenticité et la durabilité avec nos produits.</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card custom-bg-color mb-3">
+        <img src="../assets/IMG/livreur.png" class="card-img-top custom-card-img img-fluid mx-auto" style="max-width: 10rem; height: 10rem;" alt="Image 3">
+        <div class="card-body">
+          <h5 class="card-title text-center" style="color: #FEEAA1;">Livraison Rapide</h5>
+          <p class="card-text text-center"><b>Recevez votre drapeau en seulement 5 à 7 jours, incluant le temps de production et de livraison. Rapidité et efficacité pour votre satisfaction !</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+	<div class="container mt-5">
+		<h1 class="mb-4" style="color: #4AA3A2;">Vos drapeaux par continents:</h1>
+
+		<div class="row">
+			{% for category in categories %}
+				<div class="col-md-4"> <!-- Changer la classe en col-md-4 -->
+					<div class="card m-3" style="border: 1px solid black; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+						<img src="{{ asset('uploads/images/products/' ~ category.picture) }}" alt="{{ category.name }}" class="card-img-top" alt="{{category.name}}" style="height: 200px; object-fit: cover; margin-top: 10px;">
+
+						<div class="card-body" style="padding: 1.5rem;">
+							<h5 class="card-title" style="font-size: 1.25rem; margin-bottom: 0.5rem;">{{category.name}}</h5>
+							<p class="card-text" style="font-size: 0.875rem; color: #555;">{{category.description}}</p>
+
+							<div class="d-grid gap-2">
+								<a href="{{ path('app_category_show', {'id': category.id}) }}" class="btn btn-primary" style="font-size: 0.875rem;">C'est Partie</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{% if loop.index % 3 == 0 %}
+					</div><div class="row">
+				{% endif %}
+			{% else %}
+				<div class="col-md-12"> <!-- Changer la classe en col-md-12 -->
+					<p>Aucune catégorie disponible.</p>
+				</div>
+			{% endfor %}
+			
+		</div>
+	</div>
+	
+{% endblock %}
+

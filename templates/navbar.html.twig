@@ -1,0 +1,119 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" style="color: white;" href="{{ path('app_home') }}">
+  <img src="{{asset("assets/IMG/vrailogo.png")}}" alt="CountryStore Logo" class="img-responsive" width="150">
+</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color: #4AA3A2;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Espace Admin
+                    </a>
+                    <ul class="dropdown-menu bg-dark">
+                        <li>
+                            <a class="dropdown-item" style="color: #4AA3A2;" href="{{ path('app_admin_category_index') }}">Continent</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" style="color: #4AA3A2;" href="{{ path('app_admin_product_index') }}">Drapeau</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" style="color: #4AA3A2;" href="{{ path('app_admin_comment_index') }}">Commentaires</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" style="color: #4AA3A2;" href="{{ path('app_admin_user_index') }}">Utilisateurs</a>
+                        </li> 
+                        
+                    </ul>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+    <a class="nav-link" style="color: #FEEAA1;" href="{{ path('app_home') }}">
+        <b>Accueil</b>
+    </a>
+</li>
+
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle" style="color: #4AA3A2;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><b>Drapeaux</b>
+                    </a>
+                    <ul class="dropdown-menu bg-dark">
+                        <li>
+                            <a class="dropdown-item" style="color: #4AA3A2;"  href="{{ path('app_category_show', {'id': 5}) }}"><b>Europe</b></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" style="color: #4AA3A2;"  href="{{ path('app_category_show', {'id': 6}) }}"><b>Asie</b></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" style="color: #4AA3A2;"  href="{{ path('app_category_show', {'id': 7}) }}"><b>Afrique</b></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" style="color: #4AA3A2;"  href="{{ path('app_category_show', {'id': 8}) }}"><b>Océanie</b></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" style="color: #4AA3A2;"  href="{{ path('app_category_show', {'id': 9}) }}"><b>Amérique du Nord</b></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" style="color: #4AA3A2;" href="{{ path('app_category_show', {'id': 11}) }}"><b>Amérique du Sud</b></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ path('app_contact')}}">
+                    <i class="far fa-envelope text-light fa-lg"></i> <!-- Icône enveloppe -->
+                </a>
+            </li>
+            </ul>
+            
+            <!-- Barre de recherche centrée -->
+            <form class="d-flex mx-auto" role="search" action="{{ path('app_lookup') }}" method="GET">
+            <input id="recherche" class="form-control me-2" name="search" type="search" placeholder="Rechercher" aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+            &nbsp;
+
+            <!-- Panier avec emoji -->
+            <form class="d-flex">
+                <a class="btn btn-outline-light" href="{{ path('app_cart')}}">
+                    <i class="fas fa-shopping-cart fa-lg"></i>
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">
+                        {{ app.session.get('panier') ? app.session.get('panier')|length : '0' }}
+                    </span>
+                </a>
+                <!-- Emoji de panier -->
+                <span style="font-size: 1.5em; line-height: 1.25; margin-left: 0.25em;"></span>
+            </form>
+            
+            {% if app.user %}
+                <a class="btn btn-outline-danger" href="{{ path('app_logout')}}">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Se déconnecter
+                </a>
+                &nbsp;
+
+                <a class="btn btn-outline-primary" href="{{ path('app_profile_show')}}">
+                    <i class="fa-solid fa-user nav-icon"></i>
+                    Mon profil
+                </a>
+                &nbsp;
+            {% else %}
+                <a class="btn btn-outline-success" href="{{ path('app_register')}}">
+                    <i class="bi bi-person-add"></i>
+                    S'inscrire
+                </a>
+                &nbsp;
+
+                <a class="btn btn-outline-primary" href="{{ path('app_login')}}">
+                    <i class="bi-person-plus me-1"></i>
+                    Se connecter
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+

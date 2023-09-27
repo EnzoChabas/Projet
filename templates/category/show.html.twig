@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Category: {{ category.name }}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 style="font-family: 'Baloo', sans-serif; font-weight: bold; color: #4AA3A2;">{{ category.name }}</h1>
+
+
+
+        <a href="{{ path('app_home') }}" class="btn btn-primary mt-3 mb-5">Retour à l'Accueil</a>
+
+        {% if products %}
+            <div class="row">
+                {% for product in products %}
+                {# {{ dump(product)}} #}
+                    <div class="col-md-4 mb-4">
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ asset('uploads/images/products/' ~ product.picture) }}" class="card-img-top" alt="{{ product.name }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-family: 'Baloo', sans-serif; ">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text">
+                        <small class="text-light border rounded p-2 m-2" style="background-color: #4AA3A2; font-weight: 700;">Prix: {{ product.price }} €</small>
+                        <span class="text-body-secondary border rounded p-2" style="background-color: #FEEAA1; font-weight: 700;">150 x 250</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+
+                            <div class="card-footer">
+{#                                 <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Options
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Option 1</a>
+                                        <a class="dropdown-item" href="#">Option 2</a>
+                                    </div>
+                                </div> #}
+                                      <div class="d-grid gap-2">
+                                <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-success">Ajouter au panier</a>
+                                    </div>
+             
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="col-md-12">
+                <p>Aucun drapeau trouvé pour ce continent.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+

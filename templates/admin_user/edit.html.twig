@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer profil{% endblock %}
+
+{% block body %}
+    <h1>Editer profil</h1>
+
+    {{ include('admin_user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_admin_user_index') }}">Retour en arrière</a>
+
+    {{ include('admin_user/_delete_form.html.twig') }}
+{% endblock %}

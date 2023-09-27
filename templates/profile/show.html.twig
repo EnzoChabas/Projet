@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Profil</h1>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prénom</th>
+                                    <td>{{ user.prenom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ user.nom }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <a href="{{ path('app_profile_edit') }}" class="btn btn-primary">Modifier mon profil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
